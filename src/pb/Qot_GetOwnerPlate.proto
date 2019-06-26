@@ -12,12 +12,12 @@ message C2S
 message SecurityOwnerPlate
 {
 	required Qot_Common.Security security = 1; //股票
-	repeated Qot_Common.PlateInfo plateInfoList = 2; //所属板块
+	repeated Qot_Common.PlateInfo plateInfoList = 2; //所屬板塊
 }
 
 message S2C
 {
-	repeated SecurityOwnerPlate ownerPlateList = 1; //所属板块信息
+	repeated SecurityOwnerPlate ownerPlateList = 1; //所屬板塊信息
 }
 
 message Request
@@ -27,7 +27,7 @@ message Request
 
 message Response
 {
-	required int32 retType = 1 [default = -400]; //RetType,返回结果
+	required int32 retType = 1 [default = -400]; //RetType,返回結果
 	optional string retMsg = 2;
 	optional int32 errCode = 3;
 	

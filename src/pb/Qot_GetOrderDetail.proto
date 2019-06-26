@@ -12,8 +12,8 @@ message C2S
 message S2C
 {
 	required Qot_Common.Security security = 1; //股票
-	required Qot_Common.OrderDetail orderDetailAsk = 2; //卖盘
-	required Qot_Common.OrderDetail orderDetailBid = 3; //买盘
+	required Qot_Common.OrderDetail orderDetailAsk = 2; //賣盤
+	required Qot_Common.OrderDetail orderDetailBid = 3; //買盤
 }
 
 message Request
@@ -23,7 +23,7 @@ message Request
 
 message Response
 {
-	required int32 retType = 1 [default = -400]; //RetType,返回结果
+	required int32 retType = 1 [default = -400]; //RetType,返回結果
 	optional string retMsg = 2;
 	optional int32 errCode = 3;
 	optional S2C s2c = 4;

@@ -5,12 +5,12 @@ import "Common.proto";
 
 message C2S
 {
-	required int64 time = 1; //客户端发包时的格林威治时间戳，单位秒
+	required int64 time = 1; //客戶端發包時的格林威治時間戳，單位秒
 }
 
 message S2C
 {
-	required int64 time = 1; //服务器回包时的格林威治时间戳，单位秒
+	required int64 time = 1; //服務器回包時的格林威治時間戳，單位秒
 }
 
 message Request
@@ -20,7 +20,7 @@ message Request
 
 message Response
 {
-	required int32 retType = 1 [default = -400]; //RetType,返回结果
+	required int32 retType = 1 [default = -400]; //RetType,返回結果
 	optional string retMsg = 2;
 	optional int32 errCode = 3;
 	

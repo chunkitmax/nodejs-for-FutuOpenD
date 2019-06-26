@@ -21,7 +21,7 @@ message Request
 
 message Response
 {
-	required int32 retType = 1 [default = -400]; //RetType,返回结果
+	required int32 retType = 1 [default = -400]; //RetType,返回結果
 	optional string retMsg = 2;
 	optional int32 errCode = 3;
 	

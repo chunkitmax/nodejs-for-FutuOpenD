@@ -1,18 +1,18 @@
 syntax = "proto2";
 package Common;
 
-//返回结果
+//返回結果
 enum RetType
 {
 	RetType_Succeed = 0; //成功
-	RetType_Failed = -1; //失败
-	RetType_TimeOut = -100; //超时
-	RetType_Unknown = -400; //未知结果
+	RetType_Failed = -1; //失敗
+	RetType_TimeOut = -100; //超時
+	RetType_Unknown = -400; //未知結果
 }
 
-//包的唯一标识，用于回放攻击的识别和保护
+//包的唯一標識，用於回放攻擊的識別和保護
 message PacketID
 {
-	required uint64 connID = 1; //当前TCP连接的连接ID，一条连接的唯一标识，InitConnect协议会返回
-	required uint32 serialNo = 2; //包头中的包自增序列号
+	required uint64 connID = 1; //當前TCP連接的連接ID，一條連接的唯一標識，InitConnect協議會返回
+	required uint32 serialNo = 2; //包頭中的包自增序列號
 }

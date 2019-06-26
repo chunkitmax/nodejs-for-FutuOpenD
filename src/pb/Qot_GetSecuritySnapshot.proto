@@ -9,85 +9,85 @@ message C2S
 	repeated Qot_Common.Security securityList = 1; //股票
 }
 
- // 正股类型额外数据
+ // 正股類型額外數據
 message EquitySnapshotExData
 {
-    required int64 issuedShares = 1; // 发行股本,即总股本
-	required double issuedMarketVal = 2; // 总市值 =总股本*当前价格
-    required double netAsset = 3; // 资产净值
-    required double netProfit = 4; // 盈利（亏损）
+    required int64 issuedShares = 1; // 發行股本,即總股本
+	required double issuedMarketVal = 2; // 總市值 =總股本*當前價格
+    required double netAsset = 3; // 資產淨值
+    required double netProfit = 4; // 盈利（虧損）
     required double earningsPershare = 5; // 每股盈利
     required int64 outstandingShares = 6; // 流通股本
-	required double outstandingMarketVal = 7; // 流通市值 =流通股本*当前价格
-    required double netAssetPershare = 8; // 每股净资产
+	required double outstandingMarketVal = 7; // 流通市值 =流通股本*當前價格
+    required double netAssetPershare = 8; // 每股淨資產
     required double eyRate = 9; // 收益率
     required double peRate = 10; // 市盈率
-    required double pbRate = 11; // 市净率
+    required double pbRate = 11; // 市淨率
 	required double peTTMRate = 12; // 市盈率TTM
 }
 
- // 涡轮类型额外数据
+ // 渦輪類型額外數據
 message WarrantSnapshotExData
 {
-    required double conversionRate = 1; //换股比率
-    required int32 warrantType = 2; //Qot_Common.WarrantType,涡轮类型
-    required double strikePrice = 3; //行使价
-    required string maturityTime = 4; //到期日时间字符串
-    required string endTradeTime = 5; //最后交易日时间字符串
-    required Qot_Common.Security owner = 6; //所属正股 
-    required double recoveryPrice = 7; //回收价
-    required int64 streetVolumn = 8; //街货量
-    required int64 issueVolumn = 9; //发行量
-    required double streetRate = 10; //街货占比
-    required double delta = 11; //对冲值
+    required double conversionRate = 1; //換股比率
+    required int32 warrantType = 2; //Qot_Common.WarrantType,渦輪類型
+    required double strikePrice = 3; //行使價
+    required string maturityTime = 4; //到期日時間字符串
+    required string endTradeTime = 5; //最後交易日時間字符串
+    required Qot_Common.Security owner = 6; //所屬正股 
+    required double recoveryPrice = 7; //回收價
+    required int64 streetVolumn = 8; //街貨量
+    required int64 issueVolumn = 9; //發行量
+    required double streetRate = 10; //街貨佔比
+    required double delta = 11; //對沖值
     required double impliedVolatility = 12; //引申波幅
-    required double premium = 13; //溢价
+    required double premium = 13; //溢價
 }
 
- // 期权类型额外数据
+ // 期權類型額外數據
 message OptionSnapshotExData
 {
-	required int32 type = 1; //Qot_Common.OptionType,期权
-	required Qot_Common.Security owner = 2; //标的股
-	required string strikeTime = 3; //行权日
-    required double strikePrice = 4; //行权价
-	required int32 contractSize = 5; //每份合约数
-	required int32 openInterest = 6; //未平仓合约数
-	required double impliedVolatility = 7; //隐含波动率
-	required double premium = 8; //溢价
-	required double delta = 9; //希腊值 Delta
-    required double gamma = 10; //希腊值 Gamma
-	required double vega = 11; //希腊值 Vega
-    required double theta = 12; //希腊值 Theta
-    required double rho = 13; //希腊值 Rho  
+	required int32 type = 1; //Qot_Common.OptionType,期權
+	required Qot_Common.Security owner = 2; //標的股
+	required string strikeTime = 3; //行權日
+    required double strikePrice = 4; //行權價
+	required int32 contractSize = 5; //每份合約數
+	required int32 openInterest = 6; //未平倉合約數
+	required double impliedVolatility = 7; //隱含波動率
+	required double premium = 8; //溢價
+	required double delta = 9; //希臘值 Delta
+    required double gamma = 10; //希臘值 Gamma
+	required double vega = 11; //希臘值 Vega
+    required double theta = 12; //希臘值 Theta
+    required double rho = 13; //希臘值 Rho  
 }
 
- //基本快照数据
+ //基本快照數據
 message SnapshotBasicData
 {
 	required Qot_Common.Security security = 1; //股票
-	required int32 type = 2; //Qot_Common.SecurityType,股票类型
+	required int32 type = 2; //Qot_Common.SecurityType,股票類型
 	required bool isSuspend = 3; //是否停牌
-	required string listTime = 4; //上市时间字符串
-	required int32 lotSize = 5; //每手数量
-	required double priceSpread = 6; //价差
-	required string updateTime = 7; //更新时间字符串
-	required double highPrice = 8; //最新价
-	required double openPrice = 9; //开盘价
-	required double lowPrice = 10; //最低价
-	required double lastClosePrice = 11; //昨收价
-	required double curPrice = 12; //最新价
+	required string listTime = 4; //上市時間字符串
+	required int32 lotSize = 5; //每手數量
+	required double priceSpread = 6; //價差
+	required string updateTime = 7; //更新時間字符串
+	required double highPrice = 8; //最新價
+	required double openPrice = 9; //開盤價
+	required double lowPrice = 10; //最低價
+	required double lastClosePrice = 11; //昨收價
+	required double curPrice = 12; //最新價
 	required int64 volume = 13; //成交量
-	required double turnover = 14; //成交额
-	required double turnoverRate = 15; //换手率
+	required double turnover = 14; //成交額
+	required double turnoverRate = 15; //換手率
 }
 
 message Snapshot
 {
-	required SnapshotBasicData basic = 1; //快照基本数据
-	optional EquitySnapshotExData equityExData = 2; //正股快照额外数据
-	optional WarrantSnapshotExData warrantExData = 3; //窝轮快照额外数据
-	optional OptionSnapshotExData optionExData = 4; //期权快照额外数据
+	required SnapshotBasicData basic = 1; //快照基本數據
+	optional EquitySnapshotExData equityExData = 2; //正股快照額外數據
+	optional WarrantSnapshotExData warrantExData = 3; //窩輪快照額外數據
+	optional OptionSnapshotExData optionExData = 4; //期權快照額外數據
 }
 
 message S2C
@@ -102,7 +102,7 @@ message Request
 
 message Response
 {
-	required int32 retType = 1 [default = -400]; //RetType,返回结果
+	required int32 retType = 1 [default = -400]; //RetType,返回結果
 	optional string retMsg = 2;
 	optional int32 errCode = 3;
 	

@@ -5,45 +5,45 @@ import "Common.proto";
 
 enum NotifyType
 {
-	NotifyType_None = 0; //无
-	NotifyType_GtwEvent = 1; //OpenD运行事件通知
+	NotifyType_None = 0; //無
+	NotifyType_GtwEvent = 1; //OpenD運行事件通知
 }
 
 enum GtwEventType
 {
-	GtwEventType_None = 0; //正常无错
-	GtwEventType_LocalCfgLoadFailed	= 1; //加载本地配置失败
-	GtwEventType_APISvrRunFailed = 2; //服务器启动失败
-	GtwEventType_ForceUpdate = 3; //客户端版本过低
-	GtwEventType_LoginFailed = 4; //登录失败
-	GtwEventType_UnAgreeDisclaimer = 5; //未同意免责声明
-	GtwEventType_NetCfgMissing = 6; //缺少必要网络配置信息;例如控制订阅额度
-	GtwEventType_KickedOut = 7; //牛牛帐号在别处登录
-	GtwEventType_LoginPwdChanged = 8; //登录密码被修改
-	GtwEventType_BanLogin = 9; //用户被禁止登录
-	GtwEventType_NeedPicVerifyCode = 10; //需要图形验证码
-	GtwEventType_NeedPhoneVerifyCode = 11; //需要手机验证码
-	GtwEventType_AppDataNotExist = 12; //程序自带数据不存在
-	GtwEventType_NessaryDataMissing = 13; //缺少必要数据
-	GtwEventType_TradePwdChanged = 14; //交易密码被修改
-	GtwEventType_EnableDeviceLock = 15; //启用设备锁
+	GtwEventType_None = 0; //正常無錯
+	GtwEventType_LocalCfgLoadFailed	= 1; //加載本地配置失敗
+	GtwEventType_APISvrRunFailed = 2; //服務器啟動失敗
+	GtwEventType_ForceUpdate = 3; //客戶端版本過低
+	GtwEventType_LoginFailed = 4; //登錄失敗
+	GtwEventType_UnAgreeDisclaimer = 5; //未同意免責聲明
+	GtwEventType_NetCfgMissing = 6; //缺少必要網絡配置信息;例如控制訂閱額度
+	GtwEventType_KickedOut = 7; //牛牛帳號在別處登錄
+	GtwEventType_LoginPwdChanged = 8; //登錄密碼被修改
+	GtwEventType_BanLogin = 9; //用戶被禁止登錄
+	GtwEventType_NeedPicVerifyCode = 10; //需要圖形驗證碼
+	GtwEventType_NeedPhoneVerifyCode = 11; //需要手機驗證碼
+	GtwEventType_AppDataNotExist = 12; //程序自帶數據不存在
+	GtwEventType_NessaryDataMissing = 13; //缺少必要數據
+	GtwEventType_TradePwdChanged = 14; //交易密碼被修改
+	GtwEventType_EnableDeviceLock = 15; //啟用設備鎖
 }
 
 message GtwEvent
 {
-	required int32 eventType = 1; //GtwEventType,事件类型
+	required int32 eventType = 1; //GtwEventType,事件類型
 	required string desc = 2; //事件描述
 }
 
 message S2C
 {
-	required int32 type = 1; //通知类型
+	required int32 type = 1; //通知類型
 	optional GtwEvent event = 2; //事件通息
 }
 
 message Response
 {
-	required int32 retType = 1 [default = -400]; //RetType,返回结果
+	required int32 retType = 1 [default = -400]; //RetType,返回結果
 	optional string retMsg = 2;
 	optional int32 errCode = 3;
 	

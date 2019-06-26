@@ -6,12 +6,12 @@ import "Qot_Common.proto";
 
 message C2S
 {
-	required Qot_Common.Security plate = 1; //板块
+	required Qot_Common.Security plate = 1; //板塊
 }
 
 message S2C
 {
-	repeated Qot_Common.SecurityStaticInfo staticInfoList = 1; //板块下的股票静态信息
+	repeated Qot_Common.SecurityStaticInfo staticInfoList = 1; //板塊下的股票靜態信息
 }
 
 message Request
@@ -21,7 +21,7 @@ message Request
 
 message Response
 {
-	required int32 retType = 1 [default = -400]; //RetType,返回结果
+	required int32 retType = 1 [default = -400]; //RetType,返回結果
 	optional string retMsg = 2;
 	optional int32 errCode = 3;
 	

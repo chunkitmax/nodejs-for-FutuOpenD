@@ -5,7 +5,7 @@ import "Common.proto";
 
 message C2S
 {
-	repeated uint64 accIDList = 1; //要接收推送数据的业务账号列表，全量非增量，即使用者请每次传需要接收推送数据的所有业务账号
+	repeated uint64 accIDList = 1; //要接收推送數據的業務賬號列表，全量非增量，即使用者請每次傳需要接收推送數據的所有業務賬號
 }
 
 message S2C
@@ -20,7 +20,7 @@ message Request
 
 message Response
 {
-	//以下3个字段每条协议都有，注释说明在InitConnect.proto中
+	//以下3個字段每條協議都有，注釋說明在InitConnect.proto中
 	required int32 retType = 1 [default = -400];
 	optional string retMsg = 2;
 	optional int32 errCode = 3;

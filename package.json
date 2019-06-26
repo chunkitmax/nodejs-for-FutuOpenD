@@ -27,6 +27,7 @@
     "buffer": "^5.2.0",
     "bunyan": "^1.8.12",
     "bunyan-debug-stream": "^1.0.8",
+    "chinese-conv": "^1.0.1",
     "hex-sha1": "^1.0.2",
     "protobufjs": "^6.8.6"
   },

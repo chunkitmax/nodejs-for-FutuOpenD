@@ -7,18 +7,18 @@ import "Qot_Common.proto";
 enum ReferenceType
 {
 	ReferenceType_Unknow = 0; 
-	ReferenceType_Warrant = 1; //正股相关的窝轮
+	ReferenceType_Warrant = 1; //正股相關的窩輪
 }
 
 message C2S
 {
 	required Qot_Common.Security security = 1; //股票
-	required int32 referenceType = 2; // ReferenceType, 相关类型
+	required int32 referenceType = 2; // ReferenceType, 相關類型
 }
 
 message S2C
 {
-	repeated Qot_Common.SecurityStaticInfo staticInfoList = 2; //相关股票列表
+	repeated Qot_Common.SecurityStaticInfo staticInfoList = 2; //相關股票列表
 }
 
 message Request
@@ -28,7 +28,7 @@ message Request
 
 message Response
 {
-	required int32 retType = 1 [default = -400]; //RetType,返回结果
+	required int32 retType = 1 [default = -400]; //RetType,返回結果
 	optional string retMsg = 2;
 	optional int32 errCode = 3;
 	

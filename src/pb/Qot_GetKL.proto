@@ -6,16 +6,16 @@ import "Qot_Common.proto";
 
 message C2S
 {
-	required int32 rehabType = 1; //Qot_Common.RehabType,复权类型
-	required int32 klType = 2; //Qot_Common.KLType,K线类型
+	required int32 rehabType = 1; //Qot_Common.RehabType,復權類型
+	required int32 klType = 2; //Qot_Common.KLType,K線類型
 	required Qot_Common.Security security = 3; //股票
-	required int32 reqNum = 4; //请求K线根数
+	required int32 reqNum = 4; //請求K線根數
 }
 
 message S2C
 {
 	required Qot_Common.Security security = 1; //股票
-	repeated Qot_Common.KLine klList = 2; //k线点
+	repeated Qot_Common.KLine klList = 2; //k線點
 }
 
 message Request
@@ -25,7 +25,7 @@ message Request
 
 message Response
 {
-	required int32 retType = 1 [default = -400]; //RetType,返回结果
+	required int32 retType = 1 [default = -400]; //RetType,返回結果
 	optional string retMsg = 2;
 	optional int32 errCode = 3;
 
