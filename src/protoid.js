@@ -41,9 +41,11 @@ module.exports = {
   Qot_UpdateBroker: 3015, // 推送經紀隊列
 
   // 歷史數據
-  Qot_GetHistoryKL: 3100, // 獲取歷史K線
-  Qot_GetHistoryKLPoints: 3101, // 獲取多只股票歷史單點K線
-  Qot_GetRehab: 3102, // 獲取復權信息
+  // Qot_GetHistoryKL: 3100, // 獲取歷史K線
+  // Qot_GetHistoryKLPoints: 3101, // 獲取多只股票歷史單點K線
+  // Qot_GetRehab: 3102, // 獲取復權信息
+  Qot_RequestHistoryKL: 3103, // 獲取歷史K線
+  Qot_RequestRehab: 3105, // 獲取復權信息
 
   // 其他行情數據
   Qot_GetTradeDate: 3200, // 獲取市場交易日

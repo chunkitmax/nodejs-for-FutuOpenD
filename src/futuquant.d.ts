@@ -1332,8 +1332,40 @@ export default class FutuQuant {
    */
   public subQotUpdateBroker(callback: (qotGetBrokerRes: QotGetBrokerResponse) => void): void
 
+  // /**
+  //  * Qot_GetHistoryKL.proto - 3100獲取單只股票一段歷史K線
+  //  * @async
+  //  * @param {object} params
+  //  * @param {RehabType} params.rehabType Qot_Common.RehabType,復權類型
+  //  * @param {KLType} params.klType Qot_Common.KLType,K線類型
+  //  * @param {Security} params.security 股票市場以及股票代碼
+  //  * @param {string} params.beginTime 開始時間字符串
+  //  * @param {string} params.endTime 結束時間字符串
+  //  * @param {number} [params.maxAckKLNum] 最多返回多少根K線，如果未指定表示不限制
+  //  * @param {number} [params.needKLFieldsFlag] 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
+  //  * @returns {KLine[]}
+  //  */
+  // public qotGetHistoryKL(params: qotGetHistoryKLConfig): Promise<KLine[]>
+
+  // /**
+  //  * Qot_GetHistoryKLPoints.proto - 3101獲取多只股票多點歷史K線
+  //  *
+  //   復權類型參考 RehabType
+  //   K線類型參考 KLType
+  //   股票結構參考 Security
+  //   K線結構參考 KLine
+  //   K線字段類型參考 KLFields
+  //   目前限制最多5個時間點，股票個數不做限制，但不建議傳入過多股票，查詢耗時過多會導致協議返回超時。
+  //  */
+  // public qotGetHistoryKLPoints(params: qotGetHistoryKLPointsConfig): Promise<SecurityHistoryKLPoints[]>
+
+  // /**
+  //  * Qot_GetRehab.proto - 3102獲取復權信息
+  //  */
+  // public qotGetRehab(securityList: Security[]): Promise<SecurityRehab[]>
+
   /**
-   * Qot_GetHistoryKL.proto - 3100獲取單只股票一段歷史K線
+   * Qot_RequestHistoryKL.proto - 3103獲取單只股票一段歷史K線
    * @async
    * @param {object} params
    * @param {RehabType} params.rehabType Qot_Common.RehabType,復權類型
@@ -1345,24 +1377,12 @@ export default class FutuQuant {
    * @param {number} [params.needKLFieldsFlag] 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
    * @returns {KLine[]}
    */
-  public qotGetHistoryKL(params: qotGetHistoryKLConfig): Promise<KLine[]>
+  public qotRequestHistoryKL(params: qotGetHistoryKLConfig): Promise<KLine[]>
 
   /**
-   * Qot_GetHistoryKLPoints.proto - 3101獲取多只股票多點歷史K線
-   *
-    復權類型參考 RehabType
-    K線類型參考 KLType
-    股票結構參考 Security
-    K線結構參考 KLine
-    K線字段類型參考 KLFields
-    目前限制最多5個時間點，股票個數不做限制，但不建議傳入過多股票，查詢耗時過多會導致協議返回超時。
+   * Qot_RequestRehab.proto - 3105獲取復權信息
    */
-  public qotGetHistoryKLPoints(params: qotGetHistoryKLPointsConfig): Promise<SecurityHistoryKLPoints[]>
-
-  /**
-   * Qot_GetRehab.proto - 3102獲取復權信息
-   */
-  qotGetRehab(securityList: Security[]): Promise<SecurityRehab[]>
+  public qotRequestRehab(securityList: Security[]): Promise<Rehab[]>
 
   /**
    * Qot_GetTradeDate.proto - 3200獲取市場交易日
@@ -1377,6 +1397,7 @@ export default class FutuQuant {
    * @returns {SecurityStaticInfo[]} 靜態信息數組
    */
   public qotGetStaticInfo(market: number, secType: SecurityType): Promise<SecurityStaticInfo[]>
+
 
   /**
    * Qot_GetSecuritySnapshot.proto - 3203獲取股票快照

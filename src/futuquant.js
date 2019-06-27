@@ -444,8 +444,154 @@ class FutuQuant {
       callback(result);
     });
   }
+  // /**
+  //  * Qot_GetHistoryKL.proto - 3100獲取單只股票一段歷史K線
+  //  * @async
+  //  * @param {object} params
+  //  * @param {RehabType} params.rehabType Qot_Common.RehabType,復權類型
+  //  * @param {KLType} params.klType Qot_Common.KLType,K線類型
+  //  * @param {Security} params.security 股票市場以及股票代碼
+  //  * @param {string} params.beginTime 開始時間字符串
+  //  * @param {string} params.endTime 結束時間字符串
+  //  * @param {number} [params.maxAckKLNum] 最多返回多少根K線，如果未指定表示不限制
+  //  * @param {number} [params.needKLFieldsFlag] 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
+  //  * @returns {KLine[]}
+  //  */
+  // async qotGetHistoryKL(params) { // 3100獲取單只股票一段歷史K線
+  //   return (await this.socket.send('Qot_GetHistoryKL', Object.assign({
+  //     rehabType: 1, // Qot_Common.RehabType,復權類型
+  //     klType: 1, // Qot_Common.KLType,K線類型
+  //     security: {}, // 股票市場以及股票代碼
+  //     beginTime: '', // 開始時間字符串
+  //     endTime: '', // 結束時間字符串
+  //     // maxAckKLNum: 60, // 最多返回多少根K線，如果未指定表示不限制
+  //     // needKLFieldsFlag: 512, // 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
+  //   }, params))).klList || [];
+  // }
+  // /**
+  //  * 當請求時間點數據為空時，如何返回數據
+  //  *
+  //   NoDataMode_Null = 0; //直接返回空數據
+  //   NoDataMode_Forward = 1; //往前取值，返回前一個時間點數據
+  //   NoDataMode_Backward = 2; //向後取值，返回後一個時間點數據
+  //  * @typedef {number} NoDataMode
+  //  */
+  // /**
+  //  * 這個時間點返回數據的狀態以及來源
+  //  *
+  //   DataStatus_Null = 0; //空數據
+  //   DataStatus_Current = 1; //當前時間點數據
+  //   DataStatus_Previous = 2; //前一個時間點數據
+  //   DataStatus_Back = 3; //後一個時間點數據
+  //  * @typedef {number} DataStatus
+  //  */
+  // /**
+  //  * K線數據
+  //  *
+  //  * @typedef HistoryPointsKL
+  //  * @property {DataStatus} status DataStatus,數據狀態
+  //  * @property {string} reqTime 請求的時間
+  //  * @property {KLine} kl K線數據
+  //  */
+  // /**
+  //  * 多只股票的多點歷史K線點
+  //  *
+  //  * @typedef SecurityHistoryKLPoints
+  //  * @property {Security} security 股票
+  //  * @property {HistoryPointsKL} klList K線數據
+  //  */
+  // /**
+  //  * Qot_GetHistoryKLPoints.proto - 3101獲取多只股票多點歷史K線
+  //  *
+  //   復權類型參考 RehabType
+  //   K線類型參考 KLType
+  //   股票結構參考 Security
+  //   K線結構參考 KLine
+  //   K線字段類型參考 KLFields
+  //   目前限制最多5個時間點，股票個數不做限制，但不建議傳入過多股票，查詢耗時過多會導致協議返回超時。
+  //  * @async
+  //  * @param {object} params
+  //  * @param {RehabType} params.rehabType Qot_Common.RehabType,復權類型
+  //  * @param {KLType} params.klType Qot_Common.KLType,K線類型
+  //  * @param {NoDataMode} params.noDataMode NoDataMode,當請求時間點數據為空時，如何返回數據
+  //  * @param {Security[]} params.securityList 股票市場以及股票代碼
+  //  * @param {string[]} params.timeList 時間字符串
+  //  * @param {number} [params.maxReqSecurityNum] 最多返回多少只股票的數據，如果未指定表示不限制
+  //  * @param {KLFields} [params.needKLFieldsFlag] 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
+  //  * @returns {SecurityHistoryKLPoints[]}
+  //  */
+  // qotGetHistoryKLPoints(params) { // 3101獲取多只股票多點歷史K線
+  //   return this.socket.send('Qot_GetHistoryKLPoints', Object.assign({
+  //     rehabType: 1, // Qot_Common.RehabType,復權類型
+  //     klType: 1, // Qot_Common.KLType,K線類型
+  //     noDataMode: 0, // NoDataMode,當請求時間點數據為空時，如何返回數據。0
+  //     securityList: [], // 股票市場以及股票代碼
+  //     timeList: [], // 時間字符串
+  //     maxReqSecurityNum: 60, // 最多返回多少只股票的數據，如果未指定表示不限制
+  //     needKLFieldsFlag: 512, // 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
+  //   }, params)).klPointList || [];
+  // }
+  // /**
+  //  * 公司行動組合,指定某些字段值是否有效
+  //  *
+  //   CompanyAct_None = 0; //無
+  //   CompanyAct_Split = 1; //拆股
+  //   CompanyAct_Join = 2; //合股
+  //   CompanyAct_Bonus = 4; //送股
+  //   CompanyAct_Transfer = 8; //轉贈股
+  //   CompanyAct_Allot = 16; //配股
+  //   CompanyAct_Add = 32; //增發股
+  //   CompanyAct_Dividend = 64; //現金分紅
+  //   CompanyAct_SPDividend = 128; //特別股息
+  //  * @typedef {number} CompanyAct
+  //  */
+  // /**
+  //  * 復權信息
+  //  *
+  //  * @typedef Rehab
+  //  * @property {string} time 時間字符串
+  //  * @property {CompanyAct} companyActFlag 公司行動組合,指定某些字段值是否有效
+  //  * @property {number} fwdFactorA 前復權因子A
+  //  * @property {number} fwdFactorB 前復權因子B
+  //  * @property {number} bwdFactorA 後復權因子A
+  //  * @property {number} bwdFactorB 後復權因子B
+  //  * @property {number} [splitBase] 拆股(eg.1拆5，Base為1，Ert為5)
+  //  * @property {number} [splitErt]
+  //  * @property {number} [joinBase] 合股(eg.50合1，Base為50，Ert為1)
+  //  * @property {number} [joinErt]
+  //  * @property {number} [bonusBase] 送股(eg.10送3, Base為10,Ert為3)
+  //  * @property {number} [bonusErt]
+  //  * @property {number} [transferBase] 轉贈股(eg.10轉3, Base為10,Ert為3)
+  //  * @property {number} [transferErt]
+  //  * @property {number} [allotBase] 配股(eg.10送2, 配股價為6.3元, Base為10, Ert為2, Price為6.3)
+  //  * @property {number} [allotErt]
+  //  * @property {number} [allotPrice]
+  //  * @property {number} [addBase] 增發股(eg.10送2, 增發股價為6.3元, Base為10, Ert為2, Price為6.3)
+  //  * @property {number} [addErt]
+  //  * @property {number} [addPrice]
+  //  * @property {number} [dividend] 現金分紅(eg.每10股派現0.5元,則該字段值為0.05)
+  //  * @property {number} [spDividend] 特別股息(eg.每10股派特別股息0.5元,則該字段值為0.05)
+  //  */
+  // /**
+  //  * 股票復權信息
+  //  *
+  //  * @typedef SecurityRehab
+  //  * @property {Security} security 股票
+  //  * @property {Rehab[]} rehabList 復權信息
+  //  */
+  // /**
+  //  * Qot_GetRehab.proto - 3102獲取復權信息
+  //  * @async
+  //  * @param {Security[]} securityList 股票列表
+  //  * @returns {SecurityRehab[]} securityRehabList 多支股票的復權信息
+  //  */
+  // qotGetRehab(securityList) { // 3102獲取復權信息
+  //   return this.socket.send('Qot_GetRehab', {
+  //     securityList,
+  //   });
+  // }
   /**
-   * Qot_GetHistoryKL.proto - 3100獲取單只股票一段歷史K線
+   * Qot_GetHistoryKL.proto - 3103獲取單只股票一段歷史K線
    * @async
    * @param {object} params
    * @param {RehabType} params.rehabType Qot_Common.RehabType,復權類型
@@ -457,8 +603,8 @@ class FutuQuant {
    * @param {number} [params.needKLFieldsFlag] 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
    * @returns {KLine[]}
    */
-  async qotGetHistoryKL(params) { // 3100獲取單只股票一段歷史K線
-    return (await this.socket.send('Qot_GetHistoryKL', Object.assign({
+  async qotRequestHistoryKL(params) { // 3100獲取單只股票一段歷史K線
+    return (await this.socket.send('Qot_RequestHistoryKL', Object.assign({
       rehabType: 1, // Qot_Common.RehabType,復權類型
       klType: 1, // Qot_Common.KLType,K線類型
       security: {}, // 股票市場以及股票代碼
@@ -467,69 +613,6 @@ class FutuQuant {
       // maxAckKLNum: 60, // 最多返回多少根K線，如果未指定表示不限制
       // needKLFieldsFlag: 512, // 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
     }, params))).klList || [];
-  }
-  /**
-   * 當請求時間點數據為空時，如何返回數據
-   *
-    NoDataMode_Null = 0; //直接返回空數據
-    NoDataMode_Forward = 1; //往前取值，返回前一個時間點數據
-    NoDataMode_Backward = 2; //向後取值，返回後一個時間點數據
-   * @typedef {number} NoDataMode
-   */
-  /**
-   * 這個時間點返回數據的狀態以及來源
-   *
-    DataStatus_Null = 0; //空數據
-    DataStatus_Current = 1; //當前時間點數據
-    DataStatus_Previous = 2; //前一個時間點數據
-    DataStatus_Back = 3; //後一個時間點數據
-   * @typedef {number} DataStatus
-   */
-  /**
-   * K線數據
-   *
-   * @typedef HistoryPointsKL
-   * @property {DataStatus} status DataStatus,數據狀態
-   * @property {string} reqTime 請求的時間
-   * @property {KLine} kl K線數據
-   */
-  /**
-   * 多只股票的多點歷史K線點
-   *
-   * @typedef SecurityHistoryKLPoints
-   * @property {Security} security 股票
-   * @property {HistoryPointsKL} klList K線數據
-   */
-  /**
-   * Qot_GetHistoryKLPoints.proto - 3101獲取多只股票多點歷史K線
-   *
-    復權類型參考 RehabType
-    K線類型參考 KLType
-    股票結構參考 Security
-    K線結構參考 KLine
-    K線字段類型參考 KLFields
-    目前限制最多5個時間點，股票個數不做限制，但不建議傳入過多股票，查詢耗時過多會導致協議返回超時。
-   * @async
-   * @param {object} params
-   * @param {RehabType} params.rehabType Qot_Common.RehabType,復權類型
-   * @param {KLType} params.klType Qot_Common.KLType,K線類型
-   * @param {NoDataMode} params.noDataMode NoDataMode,當請求時間點數據為空時，如何返回數據
-   * @param {Security[]} params.securityList 股票市場以及股票代碼
-   * @param {string[]} params.timeList 時間字符串
-   * @param {number} [params.maxReqSecurityNum] 最多返回多少只股票的數據，如果未指定表示不限制
-   * @param {KLFields} [params.needKLFieldsFlag] 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
-   * @returns {SecurityHistoryKLPoints[]}
-   */
-  qotGetHistoryKLPoints(params) { // 3101獲取多只股票多點歷史K線
-    return this.socket.send('Qot_GetHistoryKLPoints', Object.assign({
-      rehabType: 1, // Qot_Common.RehabType,復權類型
-      klType: 1, // Qot_Common.KLType,K線類型
-      noDataMode: 0, // NoDataMode,當請求時間點數據為空時，如何返回數據。0
-      securityList: [], // 股票市場以及股票代碼
-      timeList: [], // 時間字符串
-      maxReqSecurityNum: 60, // 最多返回多少只股票的數據，如果未指定表示不限制
-      needKLFieldsFlag: 512, // 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
-    }, params)).klPointList || [];
   }
   /**
    * 公司行動組合,指定某些字段值是否有效
@@ -573,23 +656,17 @@ class FutuQuant {
    * @property {number} [spDividend] 特別股息(eg.每10股派特別股息0.5元,則該字段值為0.05)
    */
   /**
-   * 股票復權信息
-   *
-   * @typedef SecurityRehab
-   * @property {Security} security 股票
-   * @property {Rehab[]} rehabList 復權信息
-   */
-  /**
-   * Qot_GetRehab.proto - 3102獲取復權信息
+   * Qot_RequestRehab.proto - 3105獲取復權信息
    * @async
    * @param {Security[]} securityList 股票列表
-   * @returns {SecurityRehab[]} securityRehabList 多支股票的復權信息
+   * @returns {Rehab[]} securityRehabList 多支股票的復權信息
    */
-  qotGetRehab(securityList) { // 3102獲取復權信息
-    return this.socket.send('Qot_GetRehab', {
+  qotGetRehab(securityList) { // 3105獲取復權信息
+    return this.socket.send('Qot_RequestRehab', {
       securityList,
     });
   }
+
   /**
    * TradeDate
    *
