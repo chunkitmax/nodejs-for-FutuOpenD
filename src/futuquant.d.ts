@@ -7,7 +7,7 @@ import Logger from 'bunyan'
 //  */
 
 /** 交易市場，是大的市場，不是具體品種 */
-declare enum TrdMarket {
+export const enum TrdMarket {
   /** 未知市場 */
   TrdMarket_Unknown = 0,
   /** 香港市場 */
@@ -21,7 +21,7 @@ declare enum TrdMarket {
 }
 
 /** 交易環境 */
-declare enum TrdEnv {
+export const enum TrdEnv {
   /** 仿真環境(模擬環境) */
   TrdEnv_Simulate = 0,
   /** 真實環境 */
@@ -29,7 +29,7 @@ declare enum TrdEnv {
 }
 
 /** 行情市場狀態 */
-declare enum QotMarketState {
+export const enum QotMarketState {
   /**  無交易,美股未開盤 */
   QotMarketState_None = 0,
   /**  競價 */
@@ -69,7 +69,7 @@ declare enum QotMarketState {
 }
 
 /** 行情定閱類型，訂閱類型，枚舉值兼容舊協議定義 */
-declare enum SubType {
+export const enum SubType {
   SubType_None = 0,
   /** 基礎報價 */
   SubType_Basic = 1,
@@ -112,7 +112,7 @@ declare enum SubType {
  * 
  * QotMarket_US_Option 美股期權，牛牛客戶端可以查看行情，API 後續支持
  */
-declare enum QotMarket {
+export const enum QotMarket {
   /** 未知市場 */
   QotMarket_Unknown = 0,
   /** 港股 */
@@ -130,7 +130,7 @@ declare enum QotMarket {
 }
 
 /** 復權類型 */
-declare enum RehabType {
+export const enum RehabType {
   /** 不復權 */
   RehabType_None = 0,
   /** 前復權 */
@@ -140,7 +140,7 @@ declare enum RehabType {
 }
 
 /** K線類型，枚舉值兼容舊協議定義，新類型季K,年K,3分K暫時沒有支持歷史K線 */
-declare enum KLType {
+export const enum KLType {
   /** 未知 */
   KLType_Unknown = 0,
   /** 1分K */
@@ -168,7 +168,7 @@ declare enum KLType {
 }
 
 /** 逐筆方向 */
-declare enum TickerDirection {
+export const enum TickerDirection {
   /** 未知 */
   TickerDirection_Unknown = 0,
   /** 外盤 */
@@ -180,7 +180,7 @@ declare enum TickerDirection {
 }
 
 /** 這個時間點返回數據的狀態以及來源 */
-declare enum DataStatus {
+export const enum DataStatus {
   /** 空數據 */
   DataStatus_Null = 0,
   /** 當前時間點數據 */
@@ -192,7 +192,7 @@ declare enum DataStatus {
 }
 
 /** 當請求時間點數據為空時，如何返回數據 */
-declare enum NoDataMode {
+export const enum NoDataMode {
   /** 直接返回空數據 */
   NoDataMode_Null = 0,
   /** 往前取值，返回前一個時間點數據 */
@@ -202,7 +202,7 @@ declare enum NoDataMode {
 }
 
 /** 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段 */
-declare enum KLFields {
+export const enum KLFields {
   KLFields_None = 0,
   /** 最高價 */
   KLFields_High = 1,
@@ -227,7 +227,7 @@ declare enum KLFields {
 }
 
 /** 公司行動組合,指定某些字段值是否有效 */
-declare enum CompanyAct {
+export const enum CompanyAct {
   /** 無 */
   CompanyAct_None = 0,
   /** 拆股 */
@@ -249,7 +249,7 @@ declare enum CompanyAct {
 }
 
 /** 股票類型 */
-declare enum SecurityType {
+export const enum SecurityType {
   /** 未知 */
   SecurityType_Unknown = 0,
   /** 債券 */
@@ -273,7 +273,7 @@ declare enum SecurityType {
 }
 
 /** 窩輪子類型 */
-declare enum WarrantType {
+export const enum WarrantType {
   /** 未知 */
   WarrantType_Unknown = 0,
   /** 認購 */
@@ -287,7 +287,7 @@ declare enum WarrantType {
 }
 
 /** 板塊集合的類型 */
-declare enum PlateSetType {
+export const enum PlateSetType {
   /** 所有板塊 */
   PlateSetType_All = 0,
   /** 行業板塊 */
@@ -299,14 +299,14 @@ declare enum PlateSetType {
 }
 
 /** 股票類型 */
-declare enum ReferenceType {
+export const enum ReferenceType {
   ReferenceType_Unknow = 0,
   /** 正股相關的窩輪 */
   ReferenceType_Warrant = 1,
 }
 
 /** 訂單類型 */
-declare enum OrderType {
+export const enum OrderType {
   /** 未知類型 */
   OrderType_Unknown = 0,
   /** 普通訂單(港股的增強限價單、A股的限價委托、美股的限價單) */
@@ -324,7 +324,7 @@ declare enum OrderType {
 }
 
 /** 訂單狀態 */
-declare enum OrderStatus {
+export const enum OrderStatus {
   /** 未提交 */
   OrderStatus_Unsubmitted = 0,
   /** 未知狀態 */
@@ -362,7 +362,7 @@ declare enum OrderStatus {
 /** 交易方向
  * 客戶端下單只傳Buy或Sell即可，SellShort是服務器返回有此方向，BuyBack目前不存在，但也不排除服務器會傳
  */
-declare enum TrdSide {
+export const enum TrdSide {
   /** 未知方向 */
   TrdSide_Unknown = 0,
   /** 買入 */
@@ -376,7 +376,7 @@ declare enum TrdSide {
 }
 
 /** 修改訂單的操作類型，港股支持全部操作，美股目前僅支持ModifyOrderOp_Normal和ModifyOrderOp_Cancel */
-declare enum ModifyOrderOp {
+export const enum ModifyOrderOp {
   /** 未知操作 */
   ModifyOrderOp_Unknown = 0,
   /** 修改訂單的價格、數量等，即以前的改單 */
@@ -807,7 +807,7 @@ interface OrderBook {
   orederCount: number
 }
 /** Qot_GetOrderBook.proto協議返回對象 */
-interface QotGetOrderBookResponse {
+interface qotGetOrderBookResponse {
   /** 股票 */
   security: Security
   /** 賣盤 */
@@ -1166,12 +1166,12 @@ interface OrderFill {
  * 
  */
 
-export class FutuQuant {
+export default class FutuQuant {
 
   /**
    * Creates an instance of FutuQuant.
    */
-  constructor(param: InitConfig, logger: Logger)
+  constructor(param: InitConfig, logger?: Logger)
 
   /**
    * 初始化處理
@@ -1301,7 +1301,7 @@ export class FutuQuant {
   /**
    * Qot_GetOrderBook.proto - 3012獲取買賣盤，需要先調用訂閱接口
    */
-  public qotGetOrderBook(security: Security, num?: number): Promise<QotGetOrderBookResponse>
+  public qotGetOrderBook(security: Security, num?: number): Promise<qotGetOrderBookResponse>
 
   /**
    * 注冊買賣盤推送，需要先調用訂閱接口
