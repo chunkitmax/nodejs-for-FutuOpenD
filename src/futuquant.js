@@ -774,7 +774,7 @@ class FutuQuant {
     let snapshotList = [];
     while (list.length) {
       const res = await this.limitExecTimes(
-        30 * 1000, 10,
+        30 * 1000, 20, // TODO: depends on which class the user is
         async () => {
           const data = await this.socket.send('Qot_GetSecuritySnapshot', {
             securityList: list.splice(-200),
