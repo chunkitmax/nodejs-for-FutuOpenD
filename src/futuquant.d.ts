@@ -537,7 +537,7 @@ interface qotGetHistoryKLConfig {
   /** 最多返回多少根K線，如果未指定表示不限制 */
   maxAckKLNum?: number
   /** 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段 */
-  needKLFieldsFlag?: number
+  needKLFieldsFlag?: KLFields
 }
 
 interface qotGetHistoryKLPointsConfig {
