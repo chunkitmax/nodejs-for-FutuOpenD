@@ -523,6 +523,20 @@ interface KLine {
   changeRate?: number
 }
 
+interface FtDate {
+  /** 年 */
+  year?: string|number,
+  /** 月 */
+  month?: string|number,
+  /** 日 */
+  day?: string|number,
+  /** 時 */
+  hour?: string|number,
+  /** 分 */
+  minute?: string|number,
+  /** 秒 */
+  second?: string|number,
+}
 interface qotGetHistoryKLConfig {
   /** Qot_Common.RehabType,復權類型 */
   rehabType: RehabType
@@ -531,9 +545,9 @@ interface qotGetHistoryKLConfig {
   /** 股票市場以及股票代碼 */
   security: Security
   /** 開始時間字符串 */
-  beginTime: string
+  beginTime: string|FtDate
   /** 結束時間字符串 */
-  endTime: string
+  endTime: string|FtDate
   /** 最多返回多少根K線，如果未指定表示不限制 */
   maxAckKLNum?: number
   /** 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段 */
@@ -1371,8 +1385,8 @@ export default class FutuQuant {
    * @param {RehabType} params.rehabType Qot_Common.RehabType,復權類型
    * @param {KLType} params.klType Qot_Common.KLType,K線類型
    * @param {Security} params.security 股票市場以及股票代碼
-   * @param {string} params.beginTime 開始時間字符串
-   * @param {string} params.endTime 結束時間字符串
+   * @param {string|FtDate} params.beginTime 開始時間字符串
+   * @param {string|FtDate} params.endTime 結束時間字符串
    * @param {number} [params.maxAckKLNum] 最多返回多少根K線，如果未指定表示不限制
    * @param {number} [params.needKLFieldsFlag] 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
    * @returns {KLine[]}

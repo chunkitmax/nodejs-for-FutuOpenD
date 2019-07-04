@@ -591,19 +591,63 @@ class FutuQuant {
   //   });
   // }
   /**
+   * 復權信息
+   *
+   * @typedef FtDate
+   * @property {string|number} year
+   * @property {string|number} month
+   * @property {string|number} day
+   * @property {string|number} hour
+   * @property {string|number} minute
+   * @property {string|number} second
+   */
+  /**
    * Qot_GetHistoryKL.proto - 3103獲取單只股票一段歷史K線
    * @async
    * @param {object} params
    * @param {RehabType} params.rehabType Qot_Common.RehabType,復權類型
    * @param {KLType} params.klType Qot_Common.KLType,K線類型
    * @param {Security} params.security 股票市場以及股票代碼
-   * @param {string} params.beginTime 開始時間字符串
-   * @param {string} params.endTime 結束時間字符串
+   * @param {string|FtDate} params.beginTime 開始時間字符串
+   * @param {string|FtDate} params.endTime 結束時間字符串
    * @param {number} [params.maxAckKLNum] 最多返回多少根K線，如果未指定表示不限制
-   * @param {number} [params.needKLFieldsFlag] 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
+   * @param {KLFields} [params.needKLFieldsFlag] 指定返回K線結構體特定某幾項數據，KLFields枚舉值或組合，如果未指定返回全部字段
    * @returns {KLine[]}
    */
   async qotRequestHistoryKL(params) { // 3100獲取單只股票一段歷史K線
+    if (typeof params.beginTime === 'object') {
+      let d = new Date()
+      let { year, month, day, hour, minute, second } = Object.assign({
+        year: d.getFullYear(),
+        month: d.getMonth()+1,
+        day: d.getDay(),
+        hour: 9,
+        minute: 30,
+        second: 0
+      }, params.beginTime)
+      params.beginTime = `${year}-${month.toString().padStart(2, '0')}-`+
+                         `${day.toString().padStart(2, '0')} `+
+                         `${hour.toString().padStart(2, '0')}:`+
+                         `${minute.toString().padStart(2, '0')}:`+
+                         `${second.toString().padStart(2, '0')}`
+    }
+    if (typeof params.endTime === 'object') {
+      let d = new Date()
+      let { year, month, day, hour, minute, second } = Object.assign({
+        year: d.getFullYear(),
+        month: d.getMonth()+1,
+        day: d.getDay(),
+        hour: 9,
+        minute: 30,
+        second: 0
+      }, params.endTime)
+      params.endTime = `${year}-${month.toString().padStart(2, '0')}-`+
+                         `${day.toString().padStart(2, '0')} `+
+                         `${hour.toString().padStart(2, '0')}:`+
+                         `${minute.toString().padStart(2, '0')}:`+
+                         `${second.toString().padStart(2, '0')}`
+    }
+    console.log(params.beginTime, params.endTime)
     return (await this.socket.send('Qot_RequestHistoryKL', Object.assign({
       rehabType: 1, // Qot_Common.RehabType,復權類型
       klType: 1, // Qot_Common.KLType,K線類型
